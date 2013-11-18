@@ -44,7 +44,7 @@ class device_detection {
 
 
   public function __construct() {
-
+ 
   }
 
   public function detect($ua="") {
@@ -238,6 +238,13 @@ class device_detection {
 
     if (preg_match("/(windows)/i", $this->v['UA'],$matches)) {
       $this->v['DEVICE_OS']         = 'Windows';
+      $this->v['DEVICE_CATEGORY']   = 'Desktop';
+      return true;
+    } 
+
+    // added support for Chrome OS
+    if (preg_match("/( CrOS )/i", $this->v['UA'],$matches)) {
+      $this->v['DEVICE_OS']         = 'ChromeOS';
       $this->v['DEVICE_CATEGORY']   = 'Desktop';
       return true;
     } 
