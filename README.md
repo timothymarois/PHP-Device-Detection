@@ -8,4 +8,5 @@ PHP Device Detection (for Modern Platforms)
 - detect Trident, WebKit, Presto, Gecko Layout Engines
 
 This simple php library class supporst the major and most popular platforms.
+
 Also Supports the new Internet Explorer 11 (IE11) which no longer uses MSIE as its identifier.
