@@ -15,7 +15,7 @@ Also Supports the new Internet Explorer 11 (IE11) which no longer uses MSIE as i
 
 Todo: 
 - Support for Bots (googlebot, bingbot, yahoobot, etc) 
-- Support for few other browsers + OS
+- Support more browsers + OS
 
 
 (I am using this application on thousands of users to see which popular user-agents are bypassing the detection) 
