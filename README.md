@@ -1,4 +1,4 @@
-PHP device detection
+PHP Device Detection
 ====================
 
 PHP Device Detection (for Modern Platforms)
