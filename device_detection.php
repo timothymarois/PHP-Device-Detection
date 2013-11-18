@@ -23,7 +23,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  *
- * @author Timothy Marois <timothymarois@gmail.com>
+ * @author      Timothy Marois <timothymarois@gmail.com>
  *
  */
 
@@ -43,7 +43,11 @@ class device_detection {
 
 
 
-  public function __construct($ua="") {
+  public function __construct() {
+
+  }
+
+  public function detect($ua="") {
 
     if ($ua!='') {
       $this->v['UA'] = $ua;
@@ -51,12 +55,6 @@ class device_detection {
     else {
       $this->v['UA'] = (isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
     }
-
-    return $this->detect();
-  }
-
-
-  protected function detect() {
 
     // detect major browsers
 
@@ -76,6 +74,8 @@ class device_detection {
 
     return $this->v;
   }
+
+ 
 
   protected function detect_layout_engine()
   {
@@ -216,7 +216,7 @@ class device_detection {
           $this->v['BROWSER_VER']   = $matches[2];
           $this->detected = true;
           return true;
-        }
+        } 
       } 
     }
 
@@ -257,6 +257,18 @@ class device_detection {
     if (preg_match("/(ipad;)/i", $this->v['UA'],$matches)) {
       $this->v['DEVICE_OS']         = 'iOS';
       $this->v['DEVICE_CATEGORY']   = 'Tablet';
+      return true;
+    } 
+
+    if (preg_match("/(macintosh;)/i", $this->v['UA'],$matches)) {
+      $this->v['DEVICE_OS']         = 'Macintosh';
+      $this->v['DEVICE_CATEGORY']   = 'Desktop';
+      return true;
+    } 
+
+    if (preg_match("/(mac os)/i", $this->v['UA'],$matches)) {
+      $this->v['DEVICE_OS']         = 'Macintosh';
+      $this->v['DEVICE_CATEGORY']   = 'Desktop';
       return true;
     } 
 
