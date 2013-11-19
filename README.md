@@ -33,6 +33,19 @@ $device2 = $DeviceDetection->detect($user_agent);
 ```
 
 
+Example
+--------
+```php
+<?php
+
+  if ($device['BROWSER_SHORT']=='IE')
+  {
+    // internet explorer only 
+  }
+  
+?>
+```
+
 Todo: 
 - Support for Bots (googlebot, bingbot, yahoobot, etc) 
 - Support more browsers + OS
