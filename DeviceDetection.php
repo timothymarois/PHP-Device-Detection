@@ -27,7 +27,7 @@
  *
  */
 
-class device_detection {  
+class DeviceDetection {  
 
   protected $detected = false;
 
@@ -285,3 +285,5 @@ class device_detection {
 
 
 }
+
+
