@@ -27,6 +27,7 @@ $device['DEVICE_OS'];
 $device['DEVICE_CATEGORY'];
 $device['LAYOUT_ENGINE'];
 
+// OPTIONAL...
 // if you wanted to run manual checks on a user agent, just add a new detect
 $device2 = $DeviceDetection->detect($user_agent);
 ?>
