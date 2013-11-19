@@ -11,6 +11,23 @@ This simple php library class supports the major and most popular platforms.
 
 Also Supports the new Internet Explorer 11 (IE11) which no longer uses MSIE as its identifier.
 
+Usage:
+
+$DeviceDetection = new DeviceDetection();
+$device = $DeviceDetection->detect();
+
+// returns array of the following values
+$device['UA'];
+$device['BROWSER_NAME'];
+$device['BROWSER_VER'];
+$device['BROWSER_SHORT'];
+$device['DEVICE_OS'];
+$device['DEVICE_CATEGORY'];
+$device['LAYOUT_ENGINE'];
+
+if you wanted to run manual checks on a user agent, just add a new detect
+$device2 = $DeviceDetection->detect($user_agent);
+
 
 
 Todo: 
