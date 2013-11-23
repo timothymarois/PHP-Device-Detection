@@ -60,6 +60,8 @@ class DeviceDetection {
 
     // opera must be above chrome+safri (opera builds off chrome/safari)
     $this->detect_browser_opera();
+    // yaBrowser is built off chrome, must be first
+    $this->detect_browser_yabrowser();
     // chrome must be before safari (chrome builds off safari)
     $this->detect_browser_chrome();
     $this->detect_browser_firefox();
@@ -144,6 +146,23 @@ class DeviceDetection {
     if (preg_match("/(firefox)\/([0-9]+)/i", $this->v['UA'],$matches)) {
       $this->v['BROWSER_NAME']  = 'Firefox';
       $this->v['BROWSER_SHORT'] = 'FF';
+      $this->v['BROWSER_VER']   = $matches[2];
+      $this->detected = true;
+      return true;
+    } 
+
+    return false;
+  }
+  
+  
+  // added support for YaBrowser - Yandex browser (Russia)
+  // http://browser.yandex.com/
+  protected function detect_browser_yabrowser() {
+    if ($this->detected==true) return false;
+
+    if (preg_match("/(yabrowser)\/([0-9]+)/i", $this->v['UA'],$matches)) {
+      $this->v['BROWSER_NAME']  = 'YaBrowser';
+      $this->v['BROWSER_SHORT'] = 'YA';
       $this->v['BROWSER_VER']   = $matches[2];
       $this->detected = true;
       return true;
