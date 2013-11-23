@@ -4,7 +4,7 @@ PHP Device Detection
 PHP Device Detection (for Modern Platforms)
 - detect mobile, tablet, and desktop devices
 - detect Windows, Macintosh, Android, iOS and ChromeOS Operating Systems
-- detect Chrome, Internet Explorer (5-11+), Safari, Opera, Amazon Silk, YaBrowser and Firefox Browsers
+- detect Chrome, Internet Explorer (5-11+), Safari, Opera, Amazon Silk, Yandex and Firefox Browsers
 - detect Trident, WebKit, Presto, Gecko Layout Engines
 
 This simple php library class supports the major and most popular platforms.
