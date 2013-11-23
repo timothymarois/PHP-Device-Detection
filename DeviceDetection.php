@@ -161,7 +161,7 @@ class DeviceDetection {
     if ($this->detected==true) return false;
 
     if (preg_match("/(yabrowser)\/([0-9]+)/i", $this->v['UA'],$matches)) {
-      $this->v['BROWSER_NAME']  = 'YaBrowser';
+      $this->v['BROWSER_NAME']  = 'Yandex';
       $this->v['BROWSER_SHORT'] = 'YA';
       $this->v['BROWSER_VER']   = $matches[2];
       $this->detected = true;
