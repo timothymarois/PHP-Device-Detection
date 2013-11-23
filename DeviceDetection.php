@@ -63,6 +63,8 @@ class DeviceDetection {
     // chrome must be before safari (chrome builds off safari)
     $this->detect_browser_chrome();
     $this->detect_browser_firefox();
+    // amazon silk must be before safari
+    $this->detect_browser_azn_silk();
     $this->detect_browser_safari();
     $this->detect_browser_ie();
 
@@ -158,6 +160,23 @@ class DeviceDetection {
       $this->v['BROWSER_NAME']  = 'Safari';
       $this->v['BROWSER_SHORT'] = 'SF';
       $this->v['BROWSER_VER']   = $matches[2];
+      $this->detected = true;
+      return true;
+    } 
+
+    return false;
+  }
+  
+  // added Support for Amazon Silk (it is made for Kindle Fire) = Tablet 
+  // http://en.wikipedia.org/wiki/Amazon_Silk
+  protected function detect_browser_azn_silk() {
+    if ($this->detected==true) return false;
+
+    if (preg_match("/(silk)\/([0-9]+)/i", $this->v['UA'],$matches)) {
+      $this->v['BROWSER_NAME']    = 'Amazon Silk';
+      $this->v['BROWSER_SHORT']   = 'SK';
+      $this->v['BROWSER_VER']     = $matches[2];
+      $this->v['DEVICE_CATEGORY'] = 'Tablet';
       $this->detected = true;
       return true;
     } 
