@@ -18,8 +18,9 @@ Usage:
 $DeviceDetection = new DeviceDetection();
 $device = $DeviceDetection->detect();
 
-// returns array of the following values
+// User Agent
 $device['UA'];
+
 // Chrome, Internet Explorer 5.0-11.0, Apple Safari, Opera, Amazon Silk, Yandex, Mozilla Firefox
 $device['BROWSER_NAME'];
 // The version of the browser (returns a number without decimals)
