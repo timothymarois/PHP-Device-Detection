@@ -20,11 +20,17 @@ $device = $DeviceDetection->detect();
 
 // returns array of the following values
 $device['UA'];
+// Chrome, Internet Explorer 5.0-11.0, Apple Safari, Opera, Amazon Silk, Yandex, Mozilla Firefox
 $device['BROWSER_NAME'];
+// The version of the browser (returns a number without decimals)
 $device['BROWSER_VER'];
+// CH, IE, SF, OP, SK, YA, FF
 $device['BROWSER_SHORT'];
+// Windows, Macintosh, Android, iOS, ChromeOS
 $device['DEVICE_OS'];
-$device['DEVICE_CATEGORY'];
+// Desktop, Tablet, Mobile
+$device['DEVICE_CATEGORY']; 
+// Trident, Webkit, Presto, Gecko
 $device['LAYOUT_ENGINE'];
 
 // OPTIONAL...
@@ -47,9 +53,3 @@ Example
 ?>
 ```
 
-Todo: 
-- Support for Bots (googlebot, bingbot, yahoobot, etc) 
-- Support more browsers + OS
-
-
-(I am using this application on thousands of users to see which popular user-agents are bypassing the detection) 
