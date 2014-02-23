@@ -1,7 +1,7 @@
 <?php
 /**
  * DeviceDetection
- *
+ * @github github.com/timothymarois/PHP-Device-Detection
  * @author  Timothy Marois <timothymarois@gmail.com>
  *
  */
