@@ -1,10 +1,11 @@
 <?php
-/**
- * DeviceDetection
- * @github github.com/timothymarois/PHP-Device-Detection
- * @author  Timothy Marois <timothymarois@gmail.com>
- *
- */
+
+ /**
+  * DeviceDetection
+  * @github github.com/timothymarois/PHP-Device-Detection
+  * @author  Timothy Marois <timothymarois@gmail.com>
+  *
+  */
 
 class DeviceDetection {  
 
@@ -17,7 +18,8 @@ class DeviceDetection {
     'BROWSER_SHORT'   => 'UNK',
     'DEVICE_OS'       => 'Unknown',
     'DEVICE_CATEGORY' => 'Unknown',
-    'LAYOUT_ENGINE'   => 'Unknown'
+    'LAYOUT_ENGINE'   => 'Unknown',
+    'BOT'             => 'Unknown'
   );
 
 
@@ -54,6 +56,7 @@ class DeviceDetection {
 
     // detect operating systems
     $this->detect_os_platform();
+    $this->checkBots();
 
     return $this->v;
   }
@@ -301,6 +304,59 @@ class DeviceDetection {
 
 
 
+
+
+
+  public function checkBots() {
+
+    // google-search  
+    if (preg_match("/(googlebot|adsbot-google|mediapartners-google)/i", $this->v['UA'],$matches)) {
+      $this->v['BOT'] = 'Google';
+      return true;
+    } 
+
+    // MSN_Media bot
+    if (preg_match("/(msnbot|msnbot-media|MSIECrawler)/i", $this->v['UA'],$matches)) {
+      $this->v['BOT'] = 'MSN';
+      return true;
+    } 
+
+    if (preg_match("/(bingbot)/i", $this->v['UA'],$matches)) {
+      $this->v['BOT'] = 'Bing';
+      return true;
+    }
+
+    // Yahoo
+    if (preg_match("/(slurp)/i", $this->v['UA'],$matches)) {
+      $this->v['BOT'] = 'Yahoo';
+      return true;
+    } 
+
+    // alexa + internet archive
+    if (preg_match("/(ia_archiver)/i", $this->v['UA'],$matches)) {
+      $this->v['BOT'] = 'Alexa';
+      return true;
+    } 
+
+    // facebook
+    if (preg_match("/(facebookexternalhit|facebookplatform)/i", $this->v['UA'],$matches)) {
+      $this->v['BOT'] = 'Facebook';
+      return true;
+    } 
+
+
+    $unknowBots = array('crawler','spider','kenjin','cheesebot','cherrypicker','webzip','www-collector-e','k2spider','hloader','emailwolf','wget','webmasterworldforumbot',
+                        'bullseye','spankbot','jennybot','backdoorbot','erocrawler','linkscan','ubicrawler','npbot','openfind','webbandit','prowebwalker','repomonkey',
+                        'zealbot','sitesnagger','webstripper','webcopier','teleport','teleportpro','libwww','webreaper','emailcollector','copyrightcheck','webauto');
+    $unknowBots = implode('|', $unknowBots);
+
+    // generic web crawler
+    if (preg_match("/("+$unknowBots+")/i", $this->v['UA'],$matches)) {
+      $this->v['BOT'] = 'Crawler';
+      return true;
+    } 
+
+  }
+
+
 }
-
-
