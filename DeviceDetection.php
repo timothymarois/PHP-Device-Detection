@@ -321,7 +321,8 @@ class DeviceDetection {
       return true;
     } 
 
-    if (preg_match("/(bingbot)/i", $this->v['UA'],$matches)) {
+    // still feeling out BingPreview (as it takes snapshots of the site)
+    if (preg_match("/(bingbot|BingPreview)/i", $this->v['UA'],$matches)) {
       $this->v['BOT'] = 'Bing';
       return true;
     }
