@@ -351,7 +351,7 @@ class DeviceDetection {
     $unknowBots = implode('|', $unknowBots);
 
     // generic web crawler
-    if (preg_match("/("+$unknowBots+")/i", $this->v['UA'],$matches)) {
+    if (preg_match("/(".$unknowBots.")/i", $this->v['UA'],$matches)) {
       $this->v['BOT'] = 'Crawler';
       return true;
     } 
