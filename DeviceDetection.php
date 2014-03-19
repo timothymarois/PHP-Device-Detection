@@ -310,7 +310,7 @@ class DeviceDetection {
   public function checkBots() {
 
     // google-search  
-    if (preg_match("/(googlebot|adsbot-google|mediapartners-google)/i", $this->v['UA'],$matches)) {
+    if (preg_match("/(googlebot|adsbot-google|mediapartners-google|google web preview)/i", $this->v['UA'],$matches)) {
       $this->v['BOT'] = 'Google';
       return true;
     } 
@@ -348,7 +348,8 @@ class DeviceDetection {
 
     $unknowBots = array('crawler','spider','kenjin','cheesebot','cherrypicker','webzip','www-collector-e','k2spider','hloader','emailwolf','wget','webmasterworldforumbot',
                         'bullseye','spankbot','jennybot','backdoorbot','erocrawler','linkscan','ubicrawler','npbot','openfind','webbandit','prowebwalker','repomonkey',
-                        'zealbot','sitesnagger','webstripper','webcopier','teleport','teleportpro','libwww','webreaper','emailcollector','copyrightcheck','webauto');
+                        'zealbot','sitesnagger','webstripper','webcopier','teleport','teleportpro','libwww','webreaper','emailcollector','copyrightcheck','webauto',
+                        'thumbnailagent','Genieo');
     $unknowBots = implode('|', $unknowBots);
 
     // generic web crawler
