@@ -2,9 +2,8 @@ PHP Device Detection
 ====================
 
 PHP Device Detection (for Modern Platforms)
-- detect mobile, tablet, and desktop devices
-- detect Windows, Macintosh, Android, iOS and ChromeOS Operating Systems
-- detect Chrome, Internet Explorer (5-11+), Safari, Opera, Amazon Silk, Yandex and Firefox Browsers
+- detect Windows, Macintosh, Android, iOS, Linux and ChromeOS Operating Systems
+- detect Chrome, Internet Explorer (5-11+), Safari, Opera, Amazon Silk, Yandex, Firefox Browsers and Support for Microsoft Edge.
 - detect Trident, WebKit, Presto, Gecko Layout Engines
 
 This simple php library class supports the major and most popular platforms.
@@ -15,28 +14,24 @@ Usage:
 --------
 ```php
 <?php
-$DeviceDetection = new DeviceDetection();
-$device = $DeviceDetection->detect();
 
-// User Agent
-$device['UA'];
+// user agent for example
+$user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36';
 
-// Chrome, Internet Explorer 5.0-11.0, Apple Safari, Opera, Amazon Silk, Yandex, Mozilla Firefox
-$device['BROWSER_NAME'];
-// The version of the browser (returns a number without decimals)
-$device['BROWSER_VER'];
-// CH, IE, SF, OP, SK, YA, FF
-$device['BROWSER_SHORT'];
-// Windows, Macintosh, Android, iOS, ChromeOS
-$device['DEVICE_OS'];
-// Desktop, Tablet, Mobile
-$device['DEVICE_CATEGORY']; 
-// Trident, Webkit, Presto, Gecko
-$device['LAYOUT_ENGINE'];
+// start up the detection
+$mydetection = new DeviceDetection($user_agent);
 
-// OPTIONAL...
-// if you wanted to run manual checks on a user agent, just add a new detect
-$device2 = $DeviceDetection->detect($user_agent);
+echo 'Browser: '.$mydetection->getBrowser()->getName();
+echo '<br>';
+echo 'OperatingSystemName: '.$mydetection->getOperatingSystem()->getName();
+echo '<br>';
+echo 'OperatingSystemVersion: '.$mydetection->getOperatingSystem()->getVersion();
+echo '<br>';
+echo 'Layout Engine: '.$mydetection->getLayoutEngine()->getName();
+echo '<br>';
+echo 'Bot Detected: '.$mydetection->getBot()->getName();
+echo '<br>';
+
 ?>
 ```
 
@@ -46,9 +41,15 @@ Example
 ```php
 <?php
 
-  if ($device['BROWSER_SHORT']=='IE')
+  if ($mydetection->getBrowser()->getShortName()=='ie')
   {
     // internet explorer only 
+  }
+
+
+  if ($mydetection->getOperatingSystem()->getName()=='windows')
+  {
+    // only windows operating system can see this
   }
   
 ?>
