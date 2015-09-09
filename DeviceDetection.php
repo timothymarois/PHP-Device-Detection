@@ -17,13 +17,9 @@
 
 
  GOALS : User Agent Detection System
- - detect Operating System
- - detect Operating System Version
  - detect Browser 
  - detect Browser Version
  - detect Device Category (Desktop, Mobile, Tablet)
- - detect Layout Engine
- - detect Bots 
  */
 
 class DeviceDetection {  
@@ -31,6 +27,7 @@ class DeviceDetection {
   private $operating_system;
   private $layout_engine;
   private $browser;
+  private $bot;
 
   public function __construct($user_agent = '') {
 
@@ -45,12 +42,16 @@ class DeviceDetection {
     if (class_exists('DetectOperatingSystem')) {
       $this->layout_engine = new DetectLayoutEngine($user_agent);
     }
+
+    if (class_exists('DetectBot')) {
+      $this->bot = new DetectBot($user_agent);
+    }
+
   }
 
   public function __call($name,$args) {
-      return 'n/a';
+    return 'n/a';
   }
-
 
   public function getBrowser() {
     if ($this->browser instanceof DetectBrowser) {
@@ -58,13 +59,11 @@ class DeviceDetection {
     }
   }
 
-
   public function getOperatingSystem() {
     if ($this->operating_system instanceof DetectOperatingSystem) {
       return $this->operating_system;
     }
   }
-
 
   public function getLayoutEngine() {
     if ($this->layout_engine instanceof DetectLayoutEngine) {
@@ -72,8 +71,11 @@ class DeviceDetection {
     }
   }
 
-
-  
+  public function getBot() {
+    if ($this->bot instanceof DetectBot) {
+      return $this->bot;
+    }
+  }
 
   public static function match($user_agent,$match) {
     if (preg_match("/(".(is_array($match) ? implode('|',$match) : $match).")/i",$user_agent,$m)) {
