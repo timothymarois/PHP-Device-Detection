@@ -45,15 +45,16 @@ class DeviceDetection {
     if (class_exists('DetectOperatingSystem')) {
       $this->layout_engine = new DetectLayoutEngine($user_agent);
     }
-
   }
+
+  public function __call($name,$args) {
+      return 'n/a';
+  }
+
 
   public function getBrowser() {
     if ($this->browser instanceof DetectBrowser) {
       return $this->browser;
-    }
-    else {
-      return 'Error: DetectBrowser class is not setup';
     }
   }
 
@@ -62,9 +63,6 @@ class DeviceDetection {
     if ($this->operating_system instanceof DetectOperatingSystem) {
       return $this->operating_system;
     }
-    else {
-      return 'Error: DetectOperatingSystem class is not setup';
-    }
   }
 
 
@@ -72,11 +70,10 @@ class DeviceDetection {
     if ($this->layout_engine instanceof DetectLayoutEngine) {
       return $this->layout_engine;
     }
-    else {
-      return 'Error: DetectLayoutEngine class is not setup';
-    }
   }
 
+
+  
 
   public static function match($user_agent,$match) {
     if (preg_match("/(".(is_array($match) ? implode('|',$match) : $match).")/i",$user_agent,$m)) {
