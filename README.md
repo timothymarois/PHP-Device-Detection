@@ -36,6 +36,9 @@ Example
 ```php
 <?php
 
+  // include the device detection class
+  include('/PHP-Device-Detection/DeviceDetection.php');
+
   // user agent for example
   $user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36';
 
