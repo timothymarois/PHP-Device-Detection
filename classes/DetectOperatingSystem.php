@@ -12,7 +12,7 @@
 class DetectOperatingSystem implements DetectInterface {
 	private $name    = 'other';
 	private $sname   = 'oth';
-	private $version = '0';
+	private $version = 'n/a';
 
 	private $config = array(
 		'windows'=>array(
