@@ -8,7 +8,8 @@ PHP Device Detection (for Modern Platforms)
 
 This simple php library class supports the major and most popular platforms.
 
-Also Supports the new Internet Explorer 11 (IE11) which no longer uses MSIE as its identifier.
+* Supports the Internet Explorer 11 (IE11) which no longer uses MSIE as its identifier.
+* Supports Microsoft Edge Browser (in windows 10)
 
 API:
 --------
