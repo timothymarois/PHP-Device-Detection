@@ -14,20 +14,20 @@ API:
 --------
 ```php
 
-Browser: 
+// Browser: 
 getBrowser()->getName();
 getBrowser()->getShortName();
 getBrowser()->getVersion();
 
-Operating System:
+// Operating System:
 getOperatingSystem()->getName();
 getOperatingSystem()->getShortName();
 getOperatingSystem()->getVersion();
 
-Layout Engine:
+// Layout Engine:
 getLayoutEngine()->getName();
 
-Bot Detection ('n/a' if bot is not found)
+// Bot Detection ('n/a' if bot is not found)
 getBot()->getName();
 
 ```
