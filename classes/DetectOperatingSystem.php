@@ -10,7 +10,6 @@
  *
  */
 class DetectOperatingSystem implements DetectInterface {
-
 	private $name    = 'other';
 	private $sname   = 'oth';
 	private $version = '0';
@@ -36,6 +35,18 @@ class DetectOperatingSystem implements DetectInterface {
 			'name'=>'macintosh',
 			'short_name'=>'mac',
 			'versions'=>array(
+				'10_0'  => 'cheetah',
+				'10_1'  => 'puma',
+				'10_2'  => 'jaguar',
+				'10_3'  => 'panther',
+				'10_4'  => 'tiger',
+				'10_5'  => 'leopard',
+				'10_6'  => 'snow leopard',
+				'10_7'  => 'lion',
+				'10_8'  => 'mountain lion',
+				'10_9'  => 'mavericks',
+				'10_10' => 'yosemite',
+				'10_11' => 'el capitan'
 			)
 		),
 
@@ -77,6 +88,14 @@ class DetectOperatingSystem implements DetectInterface {
 			if (isset($val['match']) && !empty($val['match']) && DeviceDetection::matchName($user_agent,$val['match'])) {
 				$this->name  = $val['name'];
 				$this->sname = $val['short_name'];
+				if (isset($val['versions']) && !empty($val['versions']) && is_array($val['versions'])) {
+					foreach($val['versions'] as $ver=>$name) {
+						if (DeviceDetection::matchName($user_agent,$ver)) {
+							$this->version = $name;
+							break;
+						}
+					}
+				}
 				break;
 			}
 		}
@@ -86,12 +105,11 @@ class DetectOperatingSystem implements DetectInterface {
   	return $this->name;
   }
 
-  public function getVersion() {
-  	return $this->version;
-  }
-
   public function getShortName() {
   	return $this->sname;
   }
 
+  public function getVersion() {
+  	return $this->version;
+  }
 }
