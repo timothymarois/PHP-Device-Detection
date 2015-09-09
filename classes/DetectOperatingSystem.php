@@ -1,41 +1,84 @@
 <?php
-
+/**
+ *
+ * Operating System Version References 
+ * ==========================================
+ * Windows OS
+ * https://en.wikipedia.org/wiki/Windows_NT
+ * Macintosh OS X
+ * https://en.wikipedia.org/wiki/OS_X
+ *
+ */
 class DetectOperatingSystem implements DetectInterface {
 
 	private $name    = 'other';
 	private $sname   = 'oth';
 	private $version = '0';
 
+	private $config = array(
+		'windows'=>array(
+			'match'=>'windows',
+			'name'=>'windows',
+			'short_name'=>'win',
+			'versions'=>array(
+				'NT 5.1' => 'xp',
+				'NT 5.2' => 'xp',
+				'NT 6.0' => 'vista',
+				'NT 6.1' => '7',
+				'NT 6.2' => '8',
+				'NT 6.3' => '8.1',
+				'NT 10.0'=> '10'
+			)
+		),
+
+		'macintosh'=>array(
+			'match'=>array('macintosh','mac os'),
+			'name'=>'macintosh',
+			'short_name'=>'mac',
+			'versions'=>array(
+			)
+		),
+
+		'chrome'=>array(
+			'match'=>'cros',
+			'name'=>'chromeos',
+			'short_name'=>'chr',
+			'versions'=>array(
+			)
+		),
+
+		'android'=>array(
+			'match'=>'android',
+			'name'=>'android',
+			'short_name'=>'and',
+			'versions'=>array(
+			)
+		),
+
+		'ios'=>array(
+			'match'=>array('iphone;','ipad;'),
+			'name'=>'ios',
+			'short_name'=>'ios',
+			'versions'=>array(
+			)
+		),
+
+		'linux'=>array(
+			'match'=>'linux',
+			'name'=>'linux',
+			'short_name'=>'lin',
+			'versions'=>array(
+			)
+		)
+	);
+
 	public function __construct($user_agent = '') {
-
-		if ($this->matchName($user_agent,array('macintosh','mac os'))) {
-			$this->name  = 'macintosh';
-			$this->sname = 'mac';
-		}
-
-		if ($this->matchName($user_agent,'windows')) {
-			$this->name  = 'windows';
-			$this->sname = 'win';
-		}
-
-		if ($this->matchName($user_agent,'cros')) {
-			$this->name  = 'Chrome';
-			$this->sname = 'chr';
-		}
-
-		if ($this->matchName($user_agent,'android')) {
-			$this->name  = 'android';
-			$this->sname = 'and';
-		}
-
-		if ($this->matchName($user_agent,array('iphone;','ipad;'))) {
-			$this->name  = 'ios';
-			$this->sname = 'ios';
-		}
-
-		if ($this->matchName($user_agent,'linux')) {
-			$this->name  = 'linux';
-			$this->sname = 'lin';
+		foreach($this->config as $key=>$val) {
+			if (isset($val['match']) && !empty($val['match']) && DeviceDetection::matchName($user_agent,$val['match'])) {
+				$this->name  = $val['name'];
+				$this->sname = $val['short_name'];
+				break;
+			}
 		}
   }
 
@@ -49,15 +92,6 @@ class DetectOperatingSystem implements DetectInterface {
 
   public function getShortName() {
   	return $this->sname;
-  }
-
-  private function matchName($user_agent,$match) {
-  	if (preg_match("/(".(is_array($match) ? implode('|',$match) : $match).")/i",$user_agent,$m)) {
-  		return true;
-  	}
-  	else {
-  		return false;
-  	}
   }
 
 }

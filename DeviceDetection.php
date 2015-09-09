@@ -47,7 +47,7 @@ class DeviceDetection {
       return $this->browser;
     }
     else {
-      return 'Erorr: DetectBrowser class is not setup';
+      return 'Error: DetectBrowser class is not setup';
     }
   }
 
@@ -57,7 +57,17 @@ class DeviceDetection {
       return $this->operating_system;
     }
     else {
-      return 'Erorr: DetectOperatingSystem class is not setup';
+      return 'Error: DetectOperatingSystem class is not setup';
+    }
+  }
+
+
+  public static function matchName($user_agent,$match) {
+    if (preg_match("/(".(is_array($match) ? implode('|',$match) : $match).")/i",$user_agent,$m)) {
+      return true;
+    }
+    else {
+      return false;
     }
   }
 
