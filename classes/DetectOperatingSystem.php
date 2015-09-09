@@ -85,17 +85,18 @@ class DetectOperatingSystem implements DetectInterface {
 
 	public function __construct($user_agent = '') {
 		foreach($this->config as $key=>$val) {
-			if (isset($val['match']) && !empty($val['match']) && DeviceDetection::matchName($user_agent,$val['match'])) {
+			if (isset($val['match']) && !empty($val['match']) && DeviceDetection::match($user_agent,$val['match'])) {
 				$this->name  = $val['name'];
 				$this->sname = $val['short_name'];
 				if (isset($val['versions']) && !empty($val['versions']) && is_array($val['versions'])) {
 					foreach($val['versions'] as $ver=>$name) {
-						if (DeviceDetection::matchName($user_agent,$ver)) {
+						if (DeviceDetection::match($user_agent,$ver)) {
 							$this->version = $name;
 							break;
 						}
 					}
 				}
+
 				break;
 			}
 		}

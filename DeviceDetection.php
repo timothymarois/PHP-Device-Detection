@@ -3,7 +3,8 @@
  include_once('DetectInterface.php');
  include_once('classes/DetectBot.php');
  include_once('classes/DetectBrowser.php');
- include_once('classes/detectOperatingSystem.php');
+ include_once('classes/DetectOperatingSystem.php');
+ include_once('classes/DetectLayoutEngine.php');
 
  /**
   * DeviceDetection
@@ -28,6 +29,7 @@
 class DeviceDetection {  
   private $detected = false;
   private $operating_system;
+  private $layout_engine;
   private $browser;
 
   public function __construct($user_agent = '') {
@@ -38,6 +40,10 @@ class DeviceDetection {
 
     if (class_exists('DetectOperatingSystem')) {
       $this->operating_system = new DetectOperatingSystem($user_agent);
+    }
+
+    if (class_exists('DetectOperatingSystem')) {
+      $this->layout_engine = new DetectLayoutEngine($user_agent);
     }
 
   }
@@ -62,7 +68,17 @@ class DeviceDetection {
   }
 
 
-  public static function matchName($user_agent,$match) {
+  public function getLayoutEngine() {
+    if ($this->layout_engine instanceof DetectLayoutEngine) {
+      return $this->layout_engine;
+    }
+    else {
+      return 'Error: DetectLayoutEngine class is not setup';
+    }
+  }
+
+
+  public static function match($user_agent,$match) {
     if (preg_match("/(".(is_array($match) ? implode('|',$match) : $match).")/i",$user_agent,$m)) {
       return true;
     }
