@@ -10,27 +10,26 @@ This simple php library class supports the major and most popular platforms.
 
 Also Supports the new Internet Explorer 11 (IE11) which no longer uses MSIE as its identifier.
 
-Usage:
+API:
 --------
 ```php
 <?php
 
-// user agent for example
-$user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36';
+Browser: 
+getBrowser()->getName();
+getBrowser()->getShortName();
+getBrowser()->getVersion();
 
-// start up the detection
-$mydetection = new DeviceDetection($user_agent);
+Operating System:
+getOperatingSystem()->getName();
+getOperatingSystem()->getShortName();
+getOperatingSystem()->getVersion();
 
-echo 'Browser: '.$mydetection->getBrowser()->getName();
-echo '<br>';
-echo 'OperatingSystemName: '.$mydetection->getOperatingSystem()->getName();
-echo '<br>';
-echo 'OperatingSystemVersion: '.$mydetection->getOperatingSystem()->getVersion();
-echo '<br>';
-echo 'Layout Engine: '.$mydetection->getLayoutEngine()->getName();
-echo '<br>';
-echo 'Bot Detected: '.$mydetection->getBot()->getName();
-echo '<br>';
+Layout Engine:
+getLayoutEngine()->getName();
+
+Bot Detection ('n/a' if bot is not found)
+getBot()->getName();
 
 ?>
 ```
@@ -40,6 +39,23 @@ Example
 --------
 ```php
 <?php
+
+  // user agent for example
+  $user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36';
+
+  // start up the detection
+  $mydetection = new DeviceDetection($user_agent);
+
+  echo 'Browser: '.$mydetection->getBrowser()->getName();
+  echo '<br>';
+  echo 'OperatingSystemName: '.$mydetection->getOperatingSystem()->getName();
+  echo '<br>';
+  echo 'OperatingSystemVersion: '.$mydetection->getOperatingSystem()->getVersion();
+  echo '<br>';
+  echo 'Layout Engine: '.$mydetection->getLayoutEngine()->getName();
+  echo '<br>';
+  echo 'Bot Detected: '.$mydetection->getBot()->getName();
+  echo '<br>';
 
   if ($mydetection->getBrowser()->getShortName()=='ie')
   {
@@ -51,6 +67,10 @@ Example
   {
     // only windows operating system can see this
   }
+
+
+
+
   
 ?>
 ```
