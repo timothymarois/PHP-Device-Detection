@@ -13,7 +13,6 @@ Also Supports the new Internet Explorer 11 (IE11) which no longer uses MSIE as i
 API:
 --------
 ```php
-<?php
 
 Browser: 
 getBrowser()->getName();
@@ -31,9 +30,7 @@ getLayoutEngine()->getName();
 Bot Detection ('n/a' if bot is not found)
 getBot()->getName();
 
-?>
 ```
-
 
 Example
 --------
