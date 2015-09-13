@@ -58,6 +58,8 @@ Example
   echo '<br>';
   echo 'Bot Detected: '.$mydetection->getBot()->getName();
   echo '<br>';
+  echo 'Are you a bot?  '.(($mydetection->isBot()===true) ? 'yes' : 'no');
+  echo '<br>'; 
 
   if ($mydetection->getBrowser()->getShortName()=='ie')
   {
