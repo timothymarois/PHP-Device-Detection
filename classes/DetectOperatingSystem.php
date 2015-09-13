@@ -89,12 +89,7 @@ class DetectOperatingSystem implements DetectInterface {
 				$this->name  = $val['name'];
 				$this->sname = $val['short_name'];
 				if (isset($val['versions']) && !empty($val['versions']) && is_array($val['versions'])) {
-					foreach($val['versions'] as $ver=>$name) {
-						if (DeviceDetection::match($user_agent,$ver)) {
-							$this->version = $name;
-							break;
-						}
-					}
+					$this->version = $this->_detectOsVersion($val['versions'],$user_agent);
 				}
 
 				break;
@@ -113,4 +108,13 @@ class DetectOperatingSystem implements DetectInterface {
   public function getVersion() {
   	return $this->version;
   }
+
+  private function _detectOsVersion(array $versions,$user_agent) {
+  	foreach($versions as $ver=>$name) {
+  		if (DeviceDetection::match($user_agent,$ver)) {
+  			return $name;
+  		}
+  	}
+  }
+
 }
