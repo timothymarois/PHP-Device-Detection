@@ -28,6 +28,7 @@ class DeviceDetection {
   private $layout_engine;
   private $browser;
   private $bot;
+  private $is_bot = false;
 
   public function __construct($user_agent = '') {
 
@@ -74,6 +75,20 @@ class DeviceDetection {
   public function getBot() {
     if ($this->bot instanceof DetectBot) {
       return $this->bot;
+    }
+  }
+
+  public function isBot() {
+    if ($this->bot instanceof DetectBot) {
+      if ($this->bot->getName()=='n/a') {
+         return false;
+      }
+      else {
+        return true;
+      }
+    }
+    else {
+      return false;
     }
   }
 
