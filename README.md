@@ -29,6 +29,8 @@ getLayoutEngine()->getName();
 
 // Bot Detection ("n/a" if bot is not found)
 getBot()->getName();
+// check if the user is a bot returns (boolean true or false)
+isBot();
 
 ```
 
