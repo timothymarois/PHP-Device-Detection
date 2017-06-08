@@ -1,3 +1,5 @@
+Warning: This is no longer maintained.
+
 PHP Device Detection
 ====================
 
